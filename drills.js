@@ -10,16 +10,21 @@ function swap(array, i, j) {
   array[j] = tmp;
 }
 
-function quickSort(arr, start = 0, end = arr.length, count = 0) {
+let count = 0
+function quickSort(arr, start = 0, end = arr.length) {
+  count++
   if (start >= end) {
     return arr;
   }
   const middle = partition(arr, start, end);
-  arr = quickSort(arr, start, middle, count++);
-  arr = quickSort(arr, middle + 1, end, count++);
-  console.log(`it took ${count} to sort`);
+  arr = quickSort(arr, start, middle);
+  arr = quickSort(arr, middle + 1, end);
   return arr;
 }
+// quickSort(data)
+// mergeSort(data)
+// console.log(`it took ${count} to sort`);
+
 
 function partition(arr, start, end) {
   const pivot = arr[end - 1];
@@ -57,6 +62,7 @@ function merge(left, right, arr) {
 }
 
 function mergeSort(arr) {
+  count++
   if (arr.length <= 1) {
     return arr;
   }
@@ -68,4 +74,48 @@ function mergeSort(arr) {
 
   return merge(left, right, arr);
 }
-console.log(mergeSort(data));
+//console.log(mergeSort(data));
+
+function bucketSort(arr,lowest,highest){
+  let lower =[]
+  let higher = []
+  let newArr = [] 
+  let middle = Math.floor(highest-lowest)
+  
+  for(let i = 0;i <arr.length; i++){
+    if(arr[i]>middle){
+      higher.push(arr[i])
+    }else{
+      lower.push(arr[i])
+    }
+  };
+    newArr.push(...lower,...higher)
+    return newArr 
+};
+
+const data2 = [6,4,2,1,8,9,7,10,6,5,3]
+
+//console.log(bucketSort(data2,1,10))
+
+
+function randomSort(arr){
+  for(let i = 0;i<arr.length;i++){
+    let i = Math.floor(Math.random()*arr.length)
+    let j =Math.floor(Math.random()*arr.length)
+    swap(arr,i,j)
+  }
+  return arr
+}
+
+// console.log(randomSort(data2))
+
+
+
+// aba
+//akaer
+//aaaaa
+//bee
+
+//aba akaer aaaa
+//aa ///ba //kaer 
+//bee
